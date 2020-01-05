@@ -18,11 +18,13 @@ class Bert_Encoding:
 
     def get_masks(self,tokens, max_seq_length):
         """Mask for padding"""
+        tokens = tokens[:max_seq_length]
         if len(tokens)>max_seq_length:
             raise IndexError("Token length more than max seq length!")
         return [1]*len(tokens) + [0] * (max_seq_length - len(tokens))
 
     def get_segments(self,tokens, max_seq_length):
+        tokens = tokens[:max_seq_length]
         """Segments: 0 for the first sequence, 1 for the second"""
         if len(tokens)>max_seq_length:
             raise IndexError("Token length more than max seq length!")
@@ -39,6 +41,7 @@ class Bert_Encoding:
         return segments + [0] * (max_seq_length - len(tokens))
     
     def get_ids(self,tokens, tokenizer, max_seq_length):
+        tokens = tokens[:max_seq_length]
         """Token ids from Tokenizer vocab"""
         token_ids = tokenizer.convert_tokens_to_ids(tokens)
         input_ids = token_ids + [0] * (max_seq_length-len(token_ids))
