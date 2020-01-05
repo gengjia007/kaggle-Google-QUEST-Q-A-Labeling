@@ -34,12 +34,3 @@ class PRE:
 
 x = PRE()
 x.read_train_vector()
-
-
-
-
-        
-
-c = PRE()
-
-
